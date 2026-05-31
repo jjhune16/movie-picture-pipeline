@@ -15,27 +15,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
       - name: Cache pipenv virtualenv
         uses: actions/cache@v3
         with:
           path: ~/.local/share/virtualenvs
           key: pipenv-${{ runner.os }}-${{ hashFiles('starter/backend/Pipfile.lock') }}
-          restore-keys: |
-            pipenv-${{ runner.os }}-
-
+          restore-keys: pipenv-${{ runner.os }}-
       - name: Install pipenv
         run: pip install pipenv
-
       - name: Install dependencies
         working-directory: starter/backend
         run: pipenv install --dev
-
       - name: Run lint
         working-directory: starter/backend
         run: pipenv run lint
@@ -45,27 +39,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-
       - name: Cache pipenv virtualenv
         uses: actions/cache@v3
         with:
           path: ~/.local/share/virtualenvs
           key: pipenv-${{ runner.os }}-${{ hashFiles('starter/backend/Pipfile.lock') }}
-          restore-keys: |
-            pipenv-${{ runner.os }}-
-
+          restore-keys: pipenv-${{ runner.os }}-
       - name: Install pipenv
         run: pip install pipenv
-
       - name: Install dependencies
         working-directory: starter/backend
         run: pipenv install --dev
-
       - name: Run tests
         working-directory: starter/backend
         run: pipenv run test
@@ -76,8 +64,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Build Docker image
         working-directory: starter/backend
         run: docker build --tag=mp-backend:latest .
-EOF
