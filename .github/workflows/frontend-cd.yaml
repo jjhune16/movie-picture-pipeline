@@ -1,4 +1,3 @@
-cat > .github/workflows/frontend-cd.yaml << 'EOF'
 name: Frontend Continuous Deployment
 
 on:
@@ -132,4 +131,3 @@ jobs:
         run: |
           kustomize edit set image frontend=$ECR_REGISTRY/frontend:$IMAGE_TAG
           kustomize build | kubectl apply -f -
-EOF
