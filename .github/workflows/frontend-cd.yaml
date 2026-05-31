@@ -77,9 +77,10 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.ecr-login.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
+          REACT_APP_MOVIE_API_URL: ${{ vars.REACT_APP_MOVIE_API_URL }}
         run: |
-          docker build --build-arg=REACT_APP_MOVIE_API_URL=${{ vars.REACT_APP_MOVIE_API_URL }} --tag=$ECR_REGISTRY/frontend:$IMAGE_TAG .
-          docker push $ECR_REGISTRY/frontend:$IMAGE_TAG
+          docker build --build-arg "REACT_APP_MOVIE_API_URL=$REACT_APP_MOVIE_API_URL" -t "$ECR_REGISTRY/frontend:$IMAGE_TAG" .
+          docker push "$ECR_REGISTRY/frontend:$IMAGE_TAG"
 
   deploy:
     runs-on: ubuntu-latest
