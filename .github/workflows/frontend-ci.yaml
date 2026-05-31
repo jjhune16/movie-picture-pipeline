@@ -15,24 +15,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version-file: 'starter/frontend/.nvmrc'
-
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('starter/frontend/package-lock.json') }}
-          restore-keys: |
-            npm-
-
+          restore-keys: npm-
       - name: Install dependencies
         working-directory: starter/frontend
         run: npm ci
-
       - name: Run lint
         working-directory: starter/frontend
         run: npm run lint
@@ -42,24 +37,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version-file: 'starter/frontend/.nvmrc'
-
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('starter/frontend/package-lock.json') }}
-          restore-keys: |
-            npm-
-
+          restore-keys: npm-
       - name: Install dependencies
         working-directory: starter/frontend
         run: npm ci
-
       - name: Run tests
         working-directory: starter/frontend
         run: CI=true npm test
@@ -70,25 +60,19 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version-file: 'starter/frontend/.nvmrc'
-
       - name: Cache dependencies
         uses: actions/cache@v3
         with:
           path: ~/.npm
           key: npm-${{ hashFiles('starter/frontend/package-lock.json') }}
-          restore-keys: |
-            npm-
-
+          restore-keys: npm-
       - name: Install dependencies
         working-directory: starter/frontend
         run: npm ci
-
       - name: Build Docker image
         working-directory: starter/frontend
         run: docker build --build-arg=REACT_APP_MOVIE_API_URL=http://localhost:5000 --tag=mp-frontend:latest .
-EOF
