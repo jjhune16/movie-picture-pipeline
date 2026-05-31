@@ -1,4 +1,3 @@
-cat > .github/workflows/backend-cd.yaml << 'EOF'
 name: Backend Continuous Deployment
 
 on:
@@ -135,4 +134,3 @@ jobs:
         run: |
           kustomize edit set image backend=$ECR_REGISTRY/backend:$IMAGE_TAG
           kustomize build | kubectl apply -f -
-EOF
