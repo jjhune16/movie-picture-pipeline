@@ -1,3 +1,4 @@
+cat > .github/workflows/backend-ci.yaml << 'EOF'
 name: Backend Continuous Integration
 
 on:
@@ -79,3 +80,4 @@ jobs:
       - name: Build Docker image
         working-directory: starter/backend
         run: docker build --tag=mp-backend:latest .
+EOF
